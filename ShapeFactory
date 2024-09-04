@@ -1,0 +1,56 @@
+public class ShapeFactory {
+
+    private static final int MAX_CIRCLE_COUNT = 2;
+    private static final int MAX_SQUARE_COUNT = 2;
+    private static final int MAX_RECTANGLE_COUNT = 2;
+    private static final int MAX_TOTAL_SHAPES = 5;
+
+    private static int circleCount = 0;
+    private static int squareCount = 0;
+    private static int rectangleCount = 0;
+    private static int totalShapes = 0;
+
+    public static Shape createShape(String shapeType) {
+        if (totalShapes >= MAX_TOTAL_SHAPES) {
+            System.out.println("Cannot create more shapes. Maximum total limit reached.");
+            return null;
+        }
+
+        switch (shapeType.toLowerCase()) {
+            case "circle":
+                if (circleCount < MAX_CIRCLE_COUNT) {
+                    circleCount++;
+                    totalShapes++;
+                    return new Circle();
+                } else {
+                    System.out.println("Cannot create more Circles. Maximum limit reached.");
+                }
+                break;
+
+            case "square":
+                if (squareCount < MAX_SQUARE_COUNT) {
+                    squareCount++;
+                    totalShapes++;
+                    return new Square();
+                } else {
+                    System.out.println("Cannot create more Squares. Maximum limit reached.");
+                }
+                break;
+
+            case "rectangle":
+                if (rectangleCount < MAX_RECTANGLE_COUNT) {
+                    rectangleCount++;
+                    totalShapes++;
+                    return new Rectangle();
+                } else {
+                    System.out.println("Cannot create more Rectangles. Maximum limit reached.");
+                }
+                break;
+
+            default:
+                System.out.println("Invalid shape type.");
+                break;
+        }
+        return null;
+    }
+}
